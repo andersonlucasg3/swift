@@ -78,3 +78,8 @@ SortedCFDatabase.def
 htmlcov
 .coverage
 /benchmark/scripts/Benchmark_Driverc
+
+#==============================================================================#
+# Ignore dependencies folder
+#==============================================================================#
+dependencies
