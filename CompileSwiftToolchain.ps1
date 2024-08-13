@@ -26,19 +26,10 @@ $Root = $PSScriptRoot
 
 Push-Location $Root
 
-    $DepsPath = "./dependencies"
-
-    if (-not (Test-Path -Path $DepsPath))
-    {
-        New-Item -ItemType Directory -Path $DepsPath
-    }
-
     ./utils/update-checkout `
         --clone `
         --tag swift-5.10.1-RELEASE `
-        --source-root $DepsPath
-
-    $env:SWIFT_SOURCE_ROOT = Resolve-Path $DepsPath
+        --skip-repository swift
 
     ./utils/build-script `
         -R `
