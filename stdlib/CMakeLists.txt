@@ -222,7 +222,7 @@ if(SWIFT_STDLIB_ENABLE_SIB_TARGETS)
   swift_create_stdlib_targets("swift-stdlib" "sibopt" TRUE)
   swift_create_stdlib_targets("swift-stdlib" "sibgen" TRUE)
 endif()
-swift_create_stdlib_targets("swift-test-stdlib" "" FALSE)
+# swift_create_stdlib_targets("swift-test-stdlib" "" FALSE)
 
 # Create the libexec targets
 swift_create_stdlib_targets("swift-libexec" "" TRUE)

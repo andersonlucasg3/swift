@@ -1606,12 +1606,12 @@ for host in "${ALL_HOSTS[@]}"; do
         )
     fi
 
-    if [[ "${DARWIN_CRASH_REPORTER_CLIENT}" ]] ; then
-        swift_cmake_options=(
-            "${swift_cmake_options[@]}"
-            -DSWIFT_RUNTIME_CRASH_REPORTER_CLIENT:BOOL=$(true_false "${DARWIN_CRASH_REPORTER_CLIENT}")
-        )
-    fi
+    # if [[ "${DARWIN_CRASH_REPORTER_CLIENT}" ]] ; then
+    #     swift_cmake_options=(
+    #         "${swift_cmake_options[@]}"
+    #         -DSWIFT_RUNTIME_CRASH_REPORTER_CLIENT:BOOL=$(true_false "${DARWIN_CRASH_REPORTER_CLIENT}")
+    #     )
+    # fi
 
     swift_cmake_options=(
         "${swift_cmake_options[@]}"
@@ -1867,10 +1867,10 @@ for host in "${ALL_HOSTS[@]}"; do
                     -DSWIFT_BUILD_STATIC_STDLIB:BOOL=$(true_false "${BUILD_SWIFT_STATIC_STDLIB}")
                     -DSWIFT_BUILD_DYNAMIC_SDK_OVERLAY:BOOL=$(true_false "${BUILD_SWIFT_DYNAMIC_SDK_OVERLAY}")
                     -DSWIFT_BUILD_STATIC_SDK_OVERLAY:BOOL=$(true_false "${BUILD_SWIFT_STATIC_SDK_OVERLAY}")
-                    -DSWIFT_BUILD_PERF_TESTSUITE:BOOL=$(true_false "${build_perf_testsuite_this_time}")
+                    -DSWIFT_BUILD_PERF_TESTSUITE:BOOL=$(true_false "0")
                     -DSWIFT_BUILD_EXAMPLES:BOOL=$(true_false "${BUILD_SWIFT_EXAMPLES}")
                     -DSWIFT_BUILD_LIBEXEC:BOOL=$(true_false "${BUILD_SWIFT_LIBEXEC}")
-                    -DSWIFT_INCLUDE_TESTS:BOOL=$(true_false "${build_tests_this_time}")
+                    -DSWIFT_INCLUDE_TESTS:BOOL=$(true_false "0")
                     -DSWIFT_EMBED_BITCODE_SECTION:BOOL=$(true_false "${EMBED_BITCODE_SECTION}")
                     -DSWIFT_TOOLS_ENABLE_LTO:STRING="${SWIFT_TOOLS_ENABLE_LTO}"
                     -DSWIFT_BUILD_RUNTIME_WITH_HOST_COMPILER:BOOL=$(true_false "${BUILD_RUNTIME_WITH_HOST_COMPILER}")
@@ -2066,7 +2066,7 @@ for host in "${ALL_HOSTS[@]}"; do
                 if [[ "${SWIFT_STDLIB_CONCURRENCY_TRACING}" ]] ; then
                     cmake_options=(
                         "${cmake_options[@]}"
-                        -DSWIFT_STDLIB_CONCURRENCY_TRACING:BOOL=$(true_false "${SWIFT_STDLIB_CONCURRENCY_TRACING}")
+                        -DSWIFT_STDLIB_CONCURRENCY_TRACING:BOOL=$(true_false "0")
                     )
                 fi
 

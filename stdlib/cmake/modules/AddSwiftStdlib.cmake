@@ -336,9 +336,9 @@ function(_add_target_variant_c_compile_flags)
     list(APPEND result "-D_WASI_EMULATED_MMAN" "-D_WASI_EMULATED_PROCESS_CLOCKS" "-D_WASI_EMULATED_SIGNAL")
   endif()
 
-  if(NOT SWIFT_STDLIB_ENABLE_OBJC_INTEROP)
+  # if(NOT SWIFT_STDLIB_ENABLE_OBJC_INTEROP)
     list(APPEND result "-DSWIFT_OBJC_INTEROP=0")
-  endif()
+  # endif()
 
   if(SWIFT_STDLIB_COMPACT_ABSOLUTE_FUNCTION_POINTER)
     list(APPEND result "-DSWIFT_COMPACT_ABSOLUTE_FUNCTION_POINTER=1")
@@ -441,9 +441,9 @@ function(_add_target_variant_c_compile_flags)
   #   list(APPEND result "-DSWIFT_STDLIB_TRACING")
   # endif()
 
-  if(SWIFT_STDLIB_CONCURRENCY_TRACING)
-    list(APPEND result "-DSWIFT_STDLIB_CONCURRENCY_TRACING")
-  endif()
+  # if(SWIFT_STDLIB_CONCURRENCY_TRACING)
+  #   list(APPEND result "-DSWIFT_STDLIB_CONCURRENCY_TRACING")
+  # endif()
 
   if(SWIFT_STDLIB_USE_RELATIVE_PROTOCOL_WITNESS_TABLES)
     list(APPEND result "-DSWIFT_STDLIB_USE_RELATIVE_PROTOCOL_WITNESS_TABLES")
@@ -569,13 +569,13 @@ function(_add_target_variant_link_flags)
   #
   # TODO: Evaluate/enable -f{function,data}-sections --gc-sections for bfd,
   # gold, and lld.
-  if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
-    if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-      # See rdar://48283130: This gives 6MB+ size reductions for swift and
-      # SourceKitService, and much larger size reductions for sil-opt etc.
-      list(APPEND result "-Wl,-dead_strip")
-    endif()
-  endif()
+  # if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
+  #   if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+  #     # See rdar://48283130: This gives 6MB+ size reductions for swift and
+  #     # SourceKitService, and much larger size reductions for sil-opt etc.
+  #     list(APPEND result "-Wl,-dead_strip")
+  #   endif()
+  # endif()
 
   get_maccatalyst_build_flavor(maccatalyst_build_flavor
     "${LFLAGS_SDK}" "${LFLAGS_MACCATALYST_BUILD_FLAVOR}")
@@ -2545,16 +2545,16 @@ function(add_swift_target_library name)
 
       foreach(arch ${SWIFT_SDK_${sdk}_ARCHITECTURES})
         set(VARIANT_SUFFIX "-${SWIFT_SDK_${sdk}_LIB_SUBDIR}-${arch}")
-        if(TARGET "swift-stdlib${VARIANT_SUFFIX}" AND
-           TARGET "swift-test-stdlib${VARIANT_SUFFIX}")
+        if(TARGET "swift-stdlib${VARIANT_SUFFIX}")# AND
+          #  TARGET "swift-test-stdlib${VARIANT_SUFFIX}")
           add_dependencies("swift-stdlib${VARIANT_SUFFIX}"
               ${lipo_target}
               ${lipo_target_static})
-          if(NOT "${name}" IN_LIST FILTERED_UNITTESTS)
-            add_dependencies("swift-test-stdlib${VARIANT_SUFFIX}"
-                ${lipo_target}
-                ${lipo_target_static})
-          endif()
+          # if(NOT "${name}" IN_LIST FILTERED_UNITTESTS)
+          #   add_dependencies("swift-test-stdlib${VARIANT_SUFFIX}"
+          #       ${lipo_target}
+          #       ${lipo_target_static})
+          # endif()
         endif()
       endforeach()
     endif()
@@ -3102,10 +3102,10 @@ function(add_swift_target_executable name)
     if(SWIFTEXE_TARGET_BUILD_WITH_STDLIB)
       foreach(arch ${SWIFT_SDK_${sdk}_ARCHITECTURES})
         set(variant "-${SWIFT_SDK_${sdk}_LIB_SUBDIR}-${arch}")
-        if(TARGET "swift-stdlib${VARIANT_SUFFIX}" AND
-           TARGET "swift-test-stdlib${VARIANT_SUFFIX}")
+        if(TARGET "swift-stdlib${VARIANT_SUFFIX}")# AND
+          #  TARGET "swift-test-stdlib${VARIANT_SUFFIX}")
           add_dependencies("swift-stdlib${variant}" ${lipo_target})
-          add_dependencies("swift-test-stdlib${variant}" ${lipo_target})
+          # add_dependencies("swift-test-stdlib${variant}" ${lipo_target})
         endif()
       endforeach()
     endif()

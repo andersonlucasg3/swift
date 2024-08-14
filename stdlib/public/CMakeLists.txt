@@ -96,10 +96,10 @@ if(SWIFT_BUILD_STDLIB OR SWIFT_BUILD_REMOTE_MIRROR)
 
   set(swift_demangling_cflags)
 
-  if(SWIFT_RUNTIME_CRASH_REPORTER_CLIENT)
-  list(APPEND swift_demangling_cflags
-      "-DSWIFT_HAVE_CRASHREPORTERCLIENT=1")
-  endif()
+  # if(SWIFT_RUNTIME_CRASH_REPORTER_CLIENT)
+  # list(APPEND swift_demangling_cflags
+  #     "-DSWIFT_HAVE_CRASHREPORTERCLIENT=1")
+  # endif()
 
   # The old mangling support is only needed on platforms with ObjC.
   if(SWIFT_STDLIB_ENABLE_OBJC_INTEROP)

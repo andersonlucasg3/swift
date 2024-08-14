@@ -6,10 +6,10 @@ if(SWIFT_RUNTIME_CLOBBER_FREED_OBJECTS)
       "-DSWIFT_RUNTIME_CLOBBER_FREED_OBJECTS=1")
 endif()
 
-if(SWIFT_RUNTIME_CRASH_REPORTER_CLIENT)
-  list(APPEND swift_runtime_compile_flags
-      "-DSWIFT_HAVE_CRASHREPORTERCLIENT=1")
-endif()
+# if(SWIFT_RUNTIME_CRASH_REPORTER_CLIENT)
+#   list(APPEND swift_runtime_compile_flags
+#       "-DSWIFT_HAVE_CRASHREPORTERCLIENT=1")
+# endif()
 
 set(swift_runtime_leaks_sources)
 if(SWIFT_RUNTIME_ENABLE_LEAK_CHECKER)

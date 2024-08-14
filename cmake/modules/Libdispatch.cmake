@@ -1,5 +1,7 @@
 include(ExternalProject)
 
+message("CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME}")
+
 if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   if(CMAKE_C_COMPILER_ID STREQUAL "Clang" AND
     CMAKE_C_COMPILER_VERSION VERSION_GREATER 3.8
@@ -34,6 +36,8 @@ if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   else()
     set(LIBDISPATCH_RUNTIME_DIR lib)
   endif()
+else()
+  set(LIBDISPATCH_RUNTIME_DIR lib)
 endif()
 
 set(DISPATCH_SDKS)
@@ -65,6 +69,8 @@ foreach(sdk ${DISPATCH_SDKS})
     endif()
   endif()
   
+  message("SDK: ${sdk}")
+
   if(sdk STREQUAL "ANDROID")
     set(SWIFT_LIBDISPATCH_COMPILER_CMAKE_ARGS)
   else()
@@ -73,6 +79,8 @@ foreach(sdk ${DISPATCH_SDKS})
 
   foreach(arch ${ARCHS})
     set(LIBDISPATCH_VARIANT_NAME "libdispatch-${SWIFT_SDK_${sdk}_LIB_SUBDIR}-${arch}")
+
+    message("LIBDISPATCH_VARIANT_NAME: ${LIBDISPATCH_VARIANT_NAME}")
 
     if(sdk MATCHES WINDOWS)
       set(SWIFT_LIBDISPATCH_COMPILER_TRIPLE_CMAKE_ARGS -DCMAKE_C_COMPILER_TARGET=${SWIFT_SDK_WINDOWS_ARCH_${arch}_TRIPLE};-DCMAKE_CXX_COMPILER_TARGET=${SWIFT_SDK_WINDOWS_ARCH_${arch}_TRIPLE})

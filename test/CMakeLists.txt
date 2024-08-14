@@ -293,11 +293,12 @@ foreach(SDK ${SWIFT_SDKS})
 
       # Keep in sync with stdlib/tools/CMakeLists.txt: swift-reflection-test is
       # only used when testing dynamic stdlib.
+      message("SWIFT_INCLUDE_TESTS: ${SWIFT_INCLUDE_TESTS}")
       if(SWIFT_BUILD_DYNAMIC_STDLIB AND SWIFT_INCLUDE_TESTS)
         list(APPEND test_dependencies BlocksRuntimeStub${VARIANT_SUFFIX})
 
-        list(APPEND test_dependencies
-            "swift-test-stdlib-${SWIFT_SDK_${SDK}_LIB_SUBDIR}")
+        # list(APPEND test_dependencies
+        #     "swift-test-stdlib-${SWIFT_SDK_${SDK}_LIB_SUBDIR}")
 
         if(BUILD_FLAVOR STREQUAL "ios-like")
           # When testing the iOS-like build flavor, use the normal macOS

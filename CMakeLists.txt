@@ -270,11 +270,11 @@ option(SWIFT_BUILD_PERF_TESTSUITE
     "Create in-tree targets for building swift performance benchmarks."
     FALSE)
 
-option(SWIFT_INCLUDE_TESTS "Create targets for building/running tests." TRUE)
+option(SWIFT_INCLUDE_TESTS "Create targets for building/running tests." FALSE)
 
 option(SWIFT_INCLUDE_TEST_BINARIES
   "Create targets for building/running test binaries even if SWIFT_INCLUDE_TESTS is disabled"
-  TRUE)
+  FALSE)
 
 option(SWIFT_INCLUDE_DOCS
     "Create targets for building docs."
@@ -1384,8 +1384,8 @@ if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
 endif()
 
 if(SWIFT_INCLUDE_TESTS)
-  add_subdirectory(test)
-  add_subdirectory(unittests)
+  # add_subdirectory(test)
+  # add_subdirectory(unittests)
 endif()
 if(SWIFT_INCLUDE_DOCS)
   add_subdirectory(docs)

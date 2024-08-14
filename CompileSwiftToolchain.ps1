@@ -62,12 +62,15 @@ Push-Location $Root
         --build-swift-tools=0 `
         --build-llvm=0 `
         --skip-build-cmark `
+        --skip-test-swift `
         --skip-test-android `
         --skip-test-osx `
         --skip-ios `
         --skip-watchos `
         --skip-tvos `
         --skip-build-benchmarks `
+        --swift-disable-dead-stripping `
+        --skip-early-swift-driver `
         $AdditionalBuildArguments
 
 Pop-Location

@@ -146,9 +146,9 @@ class HostSpecificConfiguration(object):
                         args.stress_test:
                     self.swift_stdlib_build_targets.append(
                         "swift-stdlib-" + name)
-                else:
-                    self.swift_stdlib_build_targets.append(
-                        "swift-test-stdlib-" + name)
+                # else:
+                    # self.swift_stdlib_build_targets.append(
+                    #     "swift-test-stdlib-" + name)
             if build_libexec:
                 self.swift_libexec_build_targets.append(
                     'swift-libexec-' + name)

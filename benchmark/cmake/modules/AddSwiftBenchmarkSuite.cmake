@@ -666,7 +666,6 @@ function (swift_benchmark_compile_archopts)
           "-Werror=date-time"
           "-fcolor-diagnostics"
           "-O3"
-          "-Wl,-search_paths_first"
           "-Wl,-headerpad_max_install_names"
           "-target" "${target}"
           "-isysroot" "${sdk}"

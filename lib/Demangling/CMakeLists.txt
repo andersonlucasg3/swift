@@ -3,10 +3,10 @@ set(swift_demangling_compile_flags
   SWIFT_SUPPORT_OLD_MANGLING=1
   SWIFT_STDLIB_HAS_TYPE_PRINTING=1)
 
-if(SWIFT_RUNTIME_CRASH_REPORTER_CLIENT)
-  list(APPEND swift_demangling_compile_flags
-      "-DSWIFT_HAVE_CRASHREPORTERCLIENT=1")
-endif()
+# if(SWIFT_RUNTIME_CRASH_REPORTER_CLIENT)
+  # list(APPEND swift_demangling_compile_flags
+  #     "-DSWIFT_HAVE_CRASHREPORTERCLIENT=1")
+# endif()
 
 add_swift_host_library(swiftDemangling STATIC
   Demangler.cpp
