@@ -32,11 +32,13 @@ option(SWIFT_STDLIB_SUPPORTS_BACKTRACE_REPORTING
        "Build stdlib assuming the runtime environment provides the backtrace(3) API."
        "${SWIFT_STDLIB_SUPPORTS_BACKTRACE_REPORTING_default}")
 
-if("${SWIFT_HOST_VARIANT_SDK}" IN_LIST SWIFT_DARWIN_PLATFORMS)
-  set(SWIFT_STDLIB_HAS_ASL_default TRUE)
-else()
+message("SWIFT_HOST_VARIANT_SDK: ${SWIFT_HOST_VARIANT_SDK}")  
+
+#if("${SWIFT_HOST_VARIANT_SDK}" IN_LIST SWIFT_DARWIN_PLATFORMS)
+#  set(SWIFT_STDLIB_HAS_ASL_default TRUE)
+#else()
   set(SWIFT_STDLIB_HAS_ASL_default FALSE)
-endif()
+#endif()
 
 option(SWIFT_STDLIB_HAS_ASL
        "Build stdlib assuming we can use the asl_log API."
@@ -228,13 +230,13 @@ set(SWIFT_STDLIB_ENABLE_LTO OFF CACHE STRING "Build Swift stdlib with LTO. One
     must specify the form of LTO by setting this to one of: 'full', 'thin'. This
     option only affects the standard library and runtime, not tools.")
 
-if("${SWIFT_HOST_VARIANT_SDK}" IN_LIST SWIFT_DARWIN_PLATFORMS)
-  set(SWIFT_STDLIB_TRACING_default TRUE)
-  set(SWIFT_STDLIB_CONCURRENCY_TRACING_default TRUE)
-else()
+# if("${SWIFT_HOST_VARIANT_SDK}" IN_LIST SWIFT_DARWIN_PLATFORMS)
+#   set(SWIFT_STDLIB_TRACING_default TRUE)
+#   set(SWIFT_STDLIB_CONCURRENCY_TRACING_default TRUE)
+#else()
   set(SWIFT_STDLIB_TRACING_default FALSE)
   set(SWIFT_STDLIB_CONCURRENCY_TRACING_default FALSE)
-endif()
+#endif()
 
 option(SWIFT_STDLIB_TRACING
   "Enable tracing in the runtime; assumes the presence of os_log(3)

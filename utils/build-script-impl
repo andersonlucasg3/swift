@@ -1975,7 +1975,7 @@ for host in "${ALL_HOSTS[@]}"; do
                 if [[ "${SWIFT_STDLIB_HAS_ASL}" ]] ; then
                     cmake_options=(
                         "${cmake_options[@]}"
-                        -DSWIFT_STDLIB_HAS_ASL:BOOL=$(true_false "${SWIFT_STDLIB_HAS_ASL}")
+                        -DSWIFT_STDLIB_HAS_ASL:BOOL=$(true_false "0")
                     )
                 fi
 
@@ -2059,7 +2059,7 @@ for host in "${ALL_HOSTS[@]}"; do
                 if [[ "${SWIFT_STDLIB_TRACING}" ]] ; then
                     cmake_options=(
                         "${cmake_options[@]}"
-                        -DSWIFT_STDLIB_TRACING:BOOL=$(true_false "${SWIFT_STDLIB_TRACING}")
+                        -DSWIFT_STDLIB_TRACING:BOOL=$(true_false "0")
                     )
                 fi
 

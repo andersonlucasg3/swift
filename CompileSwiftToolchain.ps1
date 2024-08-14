@@ -2,6 +2,15 @@
 
 using namespace System.IO
 
+param
+(
+    [Parameter()]
+    [switch] $Reconfigure,
+
+    [Parameter()]
+    [switch] $SkipUpdateCheckout
+)
+
 if ([string]::IsNullOrEmpty($env:NDK_ROOT)) 
 {
     Write-Host "NDK_ROOT is not set. Please set it to the path of your Android NDK installation."
@@ -24,12 +33,22 @@ if ([string]::IsNullOrEmpty($env:SWIFT_PATH))
 
 $Root = $PSScriptRoot
 
+$AdditionalBuildArguments = @()
+
+if ($Reconfigure) 
+{
+    $AdditionalBuildArguments += "--reconfigure"
+}
+
 Push-Location $Root
 
-    ./utils/update-checkout `
-        --clone `
-        --tag swift-5.10.1-RELEASE `
-        --skip-repository swift
+    if (-not $SkipUpdateCheckout)
+    {
+        ./utils/update-checkout `
+            --clone `
+            --tag swift-5.10.1-RELEASE `
+            --skip-repository swift
+    }
 
     ./utils/build-script `
         -R `
@@ -48,6 +67,7 @@ Push-Location $Root
         --skip-ios `
         --skip-watchos `
         --skip-tvos `
-        --skip-build-benchmarks
+        --skip-build-benchmarks `
+        $AdditionalBuildArguments
 
 Pop-Location
