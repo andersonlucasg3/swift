@@ -34,6 +34,8 @@ if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   else()
     set(LIBDISPATCH_RUNTIME_DIR lib)
   endif()
+else()
+  set(LIBDISPATCH_RUNTIME_DIR lib)
 endif()
 
 set(DISPATCH_SDKS)

@@ -432,14 +432,14 @@ function(_add_host_variant_link_flags target)
   #
   # TODO: Evaluate/enable -f{function,data}-sections --gc-sections for bfd,
   # gold, and lld.
-  if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug" AND CMAKE_SYSTEM_NAME MATCHES Darwin)
-    if (NOT SWIFT_DISABLE_DEAD_STRIPPING)
+  #if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug" AND CMAKE_SYSTEM_NAME MATCHES Darwin)
+    #if (NOT SWIFT_DISABLE_DEAD_STRIPPING)
       # See rdar://48283130: This gives 6MB+ size reductions for swift and
       # SourceKitService, and much larger size reductions for sil-opt etc.
-      target_link_options(${target} PRIVATE
-        "SHELL:-Xlinker -dead_strip")
-    endif()
-  endif()
+      #target_link_options(${target} PRIVATE
+      #  "SHELL:-Xlinker -dead_strip")
+    #endif()
+  #endif()
 endfunction()
 
 function(_add_swift_runtime_link_flags target relpath_to_lib_dir bootstrapping)
